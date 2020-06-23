@@ -11,7 +11,15 @@ describe("Servers test (with setup and tear-down)", function() {
     expect(allServers['server' + serverId].serverName).toEqual('Alice');
   });
 
+  it('should update the ServerTable with server and earnings', function () {
+    updateServerTable();
+
+    expect(serverTbody.firstElementChild.firstElementChild.textContent).toEqual('Alice');
+    expect(serverTbody.firstElementChild.firstElementChild.nextSibling.textContent).toBeInstanceOf(String);
+  });
+
   afterEach(function() {
     serverTbody.remove('tr');
+    serverNameInput.value = '';
   });
 });
