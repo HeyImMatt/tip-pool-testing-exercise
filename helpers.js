@@ -19,6 +19,7 @@ function calculateTipPercent(billAmt, tipAmt) {
 
 // expects a table row element, appends a newly created td element from the value
 function appendTd(tr, value) {
+  console.log('fired', tr, value)
   let newTd = document.createElement('td');
   newTd.innerText = value;
 
