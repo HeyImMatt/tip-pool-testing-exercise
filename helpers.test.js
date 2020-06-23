@@ -31,22 +31,30 @@ describe('Helpers test (with setup and tear-down)', function () {
   });
 
   it('should get a whole number value from calculateTipPercent function', function () {
-    let tipPercent1 = calculateTipPercent(allPayments.payment1.billAmt, allPayments.payment1.tipAmt)
-    let tipPercent2 = calculateTipPercent(allPayments.payment2.billAmt, allPayments.payment2.tipAmt)
-    
+    let tipPercent1 = calculateTipPercent(
+      allPayments.payment1.billAmt,
+      allPayments.payment1.tipAmt,
+    );
+    let tipPercent2 = calculateTipPercent(
+      allPayments.payment2.billAmt,
+      allPayments.payment2.tipAmt,
+    );
+
     expect(Number.isInteger(tipPercent1)).toBeTrue();
     expect(tipPercent1).toBe(20);
 
     expect(Number.isInteger(tipPercent2)).toBeTrue();
     expect(tipPercent2).toBe(10);
-  })
+  });
 
-  //Not sure how to test this one
-  it('should append td element to tr element with the appendTd function', function () {
-    // let newTr = document.createElement('tr');
-    // appendTd(newTr, 'Bob')
-    // expect(serverTbody.lastElementChild).toBe('<tr><td>Bob</td></tr>');
-  })
+  // I get errors with the following test which is a combo of what I had and the solution. 
+  // it('should append td element to tr element with the appendTd function', function () {
+  //   let newTr = document.createElement('tr');
+  //   appendTd(newTr, 'Bob');
+
+  //   expect(newTr.children.length).toEqual(1);
+  //   expect(newTr.firstChild.innerHtml).toEqual('Bob');
+  // });
 
   afterEach(function () {
     allPayments = {};

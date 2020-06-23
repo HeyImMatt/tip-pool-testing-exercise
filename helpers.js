@@ -19,9 +19,19 @@ function calculateTipPercent(billAmt, tipAmt) {
 
 // expects a table row element, appends a newly created td element from the value
 function appendTd(tr, value) {
-  console.log('fired', tr, value)
   let newTd = document.createElement('td');
   newTd.innerText = value;
+
+  tr.append(newTd);
+}
+
+// appends a delete button to servers
+function appendDeleteBtn(tr) {
+  let newTd = document.createElement('td');
+  newTd.innerText = 'X';
+  newTd.addEventListener('click', function(event) {
+    event.target.parentElement.remove();
+  })
 
   tr.append(newTd);
 }
