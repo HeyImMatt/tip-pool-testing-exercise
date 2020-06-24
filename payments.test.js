@@ -26,7 +26,8 @@ describe('Payments test (with setup and tear-down)', function () {
     submitPaymentInfo();
     expect(paymentTbody.firstElementChild.firstElementChild.textContent).toBe('$45');
     expect(paymentTbody.firstElementChild.firstElementChild.nextSibling.textContent).toBe('$9');
-    expect(paymentTbody.firstElementChild.lastElementChild.textContent).toBe('20%');
+    expect(paymentTbody.firstElementChild.lastElementChild.previousSibling.textContent).toBe('20%');
+    expect(paymentTbody.firstElementChild.lastElementChild.textContent).toBe('X');
   });
 
   it('should update the summary table with updateSummary', function () {

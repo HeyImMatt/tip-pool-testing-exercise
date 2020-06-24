@@ -1,18 +1,9 @@
 describe('Helpers test (with setup and tear-down)', function () {
   beforeEach(function () {
     // initialization logic
-    allPayments = {
-      payment1: {
-        billAmt: 45,
-        tipAmt: 9,
-        tipPercent: 20,
-      },
-      payment2: {
-        billAmt: 20,
-        tipAmt: 2,
-        tipPercent: 10,
-      },
-    };
+    billAmtInput.value = 45;
+    tipAmtInput.value = 9;
+    submitPaymentInfo();
   });
 
   it('should get a number value from sumPaymentTotal function', function () {
@@ -21,33 +12,23 @@ describe('Helpers test (with setup and tear-down)', function () {
     let sumPaymentTotalTipPercent = sumPaymentTotal('tipPercent');
 
     expect(sumPaymentTotalBillAmt).toBeInstanceOf(Number);
-    expect(sumPaymentTotalBillAmt).toEqual(65);
+    expect(sumPaymentTotalBillAmt).toEqual(45);
 
     expect(sumPaymentTotalTipAmt).toBeInstanceOf(Number);
-    expect(sumPaymentTotalTipAmt).toEqual(11);
+    expect(sumPaymentTotalTipAmt).toEqual(9);
 
     expect(sumPaymentTotalTipPercent).toBeInstanceOf(Number);
-    expect(sumPaymentTotalTipPercent).toEqual(30);
+    expect(sumPaymentTotalTipPercent).toEqual(20);
   });
 
   it('should get a whole number value from calculateTipPercent function', function () {
-    let tipPercent1 = calculateTipPercent(
-      allPayments.payment1.billAmt,
-      allPayments.payment1.tipAmt,
-    );
-    let tipPercent2 = calculateTipPercent(
-      allPayments.payment2.billAmt,
-      allPayments.payment2.tipAmt,
-    );
+    let tipPercent1 = calculateTipPercent(45, 9);
 
     expect(Number.isInteger(tipPercent1)).toBeTrue();
     expect(tipPercent1).toBe(20);
-
-    expect(Number.isInteger(tipPercent2)).toBeTrue();
-    expect(tipPercent2).toBe(10);
   });
 
-  // I get errors with the following test which is a combo of what I had and the solution. 
+  // I get errors with the following test which is a combo of what I had and the solution. Can't quite figure this one out for some reason. 
   // it('should append td element to tr element with the appendTd function', function () {
   //   let newTr = document.createElement('tr');
   //   appendTd(newTr, 'Bob');
@@ -56,7 +37,19 @@ describe('Helpers test (with setup and tear-down)', function () {
   //   expect(newTr.firstChild.innerHtml).toEqual('Bob');
   // });
 
+  it('should generate delete button from appendDeleteBtn', function () {
+    let newTr = document.createElement('tr');
+
+    appendDeleteBtn(newTr);
+
+    expect(newTr.children.length).toEqual(1);
+    expect(newTr.firstChild.innerHTML).toEqual('X');
+  });
+
   afterEach(function () {
     allPayments = {};
+    paymentId = 0;
+    billAmtInput.value = '';
+    tipAmtInput.value = '';
   });
 });

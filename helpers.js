@@ -25,7 +25,7 @@ function appendTd(tr, value) {
   tr.append(newTd);
 }
 
-// appends a delete button to servers
+// appends a delete button
 function appendDeleteBtn(tr) {
   let newTd = document.createElement('td');
   newTd.innerText = 'X';
